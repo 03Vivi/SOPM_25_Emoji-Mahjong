@@ -1,0 +1,293 @@
+/* Stiluri globale */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Containerul principal al aplicației */
+.container {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* Fundal Imagine */
+  background-image: url('/img.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Ecranul de Start */
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  margin-top: 50px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.start-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+/* Titlul jocului */
+.title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px black;
+}
+
+/* Zona de scor și buton */
+.stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  backdrop-filter: blur(3px);
+}
+
+/* Butoane */
+.button-menu {
+  background-color: #6c757d;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+/* Zona de Timp */
+.time-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 120px;
+}
+
+.timer {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.best-time {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Mesajul de victorie */
+.winMessage {
+  font-size: 2rem;
+  color: #ffd700;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  animation: pop 0.5s ease-out;
+}
+
+/* Containerul tablei de joc */
+.boardContainer {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+/* Tabla de joc */
+.board {
+  position: relative;
+  transform: translateX(-190px) translateY(50px);
+}
+
+/* Stilul de bază al unei piese */
+.tile {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s, background-color 0.2s;
+  box-sizing: border-box;
+}
+
+/* Emoji-ul din piesă */
+.emoji {
+  font-size: 2rem;
+  user-select: none;
+}
+
+/* Laturile false pentru efect 3D */
+.tileSide {
+  position: absolute;
+  background-color: #999;
+  z-index: -1;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- STILURI PENTRU SHUFFLE, HINT ȘI ANIMAȚII VIZUALE --- */
+
+/* Mesajul de Shuffle (Overlay) */
+.shuffle-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  animation: fadeIn 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #ffd700;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -40%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* Grup butoane de acțiune (Undo, Hint) */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-action {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  background-color: #17a2b8; /* Cyan */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.btn-action:active {
+  transform: scale(0.95);
+}
+
+.btn-action:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Animație pentru Hint (Pulsare) */
+@keyframes pulse-cyan {
+  0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); border-color: cyan; }
+  70% { box-shadow: 0 0 20px 10px rgba(0, 255, 255, 0); border-color: cyan; }
+  100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); border-color: cyan; }
+}
+
+.tile.hinted {
+  animation: pulse-cyan 1.5s infinite;
+  z-index: 100 !important;
+}
+
+/* Animație când piesa este potrivită (MATCHED - Visual Juice) */
+@keyframes zoomOutAndSpin {
+  0% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+  100% { transform: scale(0) rotate(-45deg); opacity: 0; }
+}
+
+.tile.matched {
+  animation: zoomOutAndSpin 0.4s ease-in forwards !important;
+  z-index: 100 !important;
+  pointer-events: none;
+  border-color: #28a745 !important;
+  background-color: #d4edda !important;
+}
+
+/* Particule (Stele) */
+.tile.matched::after {
+  content: '✨';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  animation: starBurst 0.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes starBurst {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(2) rotate(180deg); opacity: 0; }
+}
+
+/* Animație pentru eroare (Tremurat) */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); border-color: red; }
+  50% { transform: translateX(5px); border-color: red; }
+  75% { transform: translateX(-5px); border-color: red; }
+  100% { transform: translateX(0); border-color: #888; }
+}
+
+.tile.shake {
+  animation: shake 0.3s ease-in-out;
+}
