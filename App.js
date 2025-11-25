@@ -81,22 +81,11 @@ function GameScreen({ nickname,difficulty,bestTime,onGameEnd,onGoToMenu }){
     return blockedMap.has(tile.id);
   };
 
-  const hasValidMoves = (currentTiles) => {
-    const vis = currentTiles.filter(t => t.status === 'visible' || t.status === 'selected');
-    if (vis.length < 2) return true;
+  // Funcția de Shuffle Manual
+  const handleManualShuffle = () => {
+    // Penalizare scor
+    setScore(s => Math.max(0, s - 300));
     
-    const localBlockedMap = computeBlockedMap(currentTiles);
-    const freeTiles = vis.filter(t => !localBlockedMap.has(t.id));
-    
-    const emojiCounts = {};
-    for (const t of freeTiles) {
-      if (emojiCounts[t.emoji]) return true;
-      emojiCounts[t.emoji] = true;
-    }
-    return false;
-  };
-
-  const performShuffle = () => {
     setIsShuffling(true);
     setTimeout(() => {
       setTiles(prevTiles => {
@@ -115,13 +104,6 @@ function GameScreen({ nickname,difficulty,bestTime,onGameEnd,onGoToMenu }){
       setIsShuffling(false);
     }, 1000);
   };
-
-  useEffect(() => {
-    if (tiles.length > 0 && !isGameOver && !hasValidMoves(tiles)) {
-      const remaining = tiles.filter(t => t.status !== 'removed').length;
-      if (remaining > 0) performShuffle();
-    }
-  }, [tiles, isGameOver]);
 
   const startNewGame=()=>{
     const layoutTemplate=LAYOUTS[difficulty];
@@ -179,8 +161,6 @@ function GameScreen({ nickname,difficulty,bestTime,onGameEnd,onGoToMenu }){
       setHintIds(pair);
       setScore(s => Math.max(0, s - 50));
       setTimeout(() => setHintIds([]), 2000);
-    } else {
-      performShuffle();
     }
   };
 
@@ -259,8 +239,9 @@ function GameScreen({ nickname,difficulty,bestTime,onGameEnd,onGoToMenu }){
       
       <div style={{display:'flex', flexDirection:'column', gap:'5px', alignItems:'center'}}>
         <div className="actions">
-          <button className="btn-action" onClick={handleUndo} disabled={history.length === 0}>↩️ Undo</button>
+          <button className="btn-action" onClick={handleUndo} disabled={history.length === 0} title="Anulează mutarea">↩️ Undo</button>
           <button className="btn-action" onClick={handleHint} title="Cost: -50 pct">💡 Hint</button>
+          <button className="btn-action btn-shuffle" onClick={handleManualShuffle} title="Cost: -300 pct">🔀 Shuffle</button>
         </div>
         <div>
            <button onClick={startNewGame} className="button" style={{fontSize:'0.8rem', padding:'5px 10px'}}>Restart</button>
@@ -273,7 +254,7 @@ function GameScreen({ nickname,difficulty,bestTime,onGameEnd,onGoToMenu }){
     
     {isShuffling && (
       <div className="shuffle-message">
-        <span>🔄 Nu mai sunt mutări! Se amestecă...</span>
+        <span>🔄 Se amestecă piesele...</span>
       </div>
     )}
 
