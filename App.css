@@ -206,7 +206,7 @@ body {
   to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
-/* Grup butoane de acțiune (Undo, Hint) */
+/* Grup butoane de acțiune (Undo, Hint, Shuffle) */
 .actions {
   display: flex;
   gap: 10px;
@@ -222,6 +222,11 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.1s;
+}
+
+/* Stil specific pentru Shuffle (Portocaliu) */
+.btn-shuffle {
+  background-color: #fd7e14; 
 }
 
 .btn-action:active {
