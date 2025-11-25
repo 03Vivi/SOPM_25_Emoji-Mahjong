@@ -43,3 +43,10 @@ React.js: Pentru logica de joc și gestionarea stării.
 CSS3: Pentru stilizare, animații și efecte 3D.
 
 JavaScript (ES6+): Pentru algoritmii de generare a hărții și verificare a mutărilor valide.
+
+Împărțire task-uri:
+Flueraru Roxana-Alexandra prezintă design-ul, animațiile CSS (cum tremură piesele, cum apar steluțele) și ecranul de start.
+
+Ursu Andreea-Georgiana explică matematica: cum sunt generate "straturile" 3D și cum algoritmul decide dacă o piesă e blocată de vecini.
+
+Cursaru Violeta-Gabriela arată cum se leagă totul: cronometrul, click-urile, salvarea scorului și fluxul jocului.
